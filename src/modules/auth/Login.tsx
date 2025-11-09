@@ -8,7 +8,7 @@ const Login = () => {
   const { authUser, login } = authStore();
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   
+
     login(email, password, role);
     console.log(authUser);
   };
@@ -39,15 +39,36 @@ const Login = () => {
 
             <div className="flex gap-4 items-center">
               <label htmlFor="user" className="flex items-center gap-1">
-                <input type="radio" name="role" id="user" value="user" />
+                <input
+                  type="radio"
+                  name="role"
+                  id="user"
+                  value="user"
+                  onChange={(e) => setRole(e.target.value)}
+                  checked={role === "user"}
+                />
                 <span>User</span>
               </label>
               <label htmlFor="trainer" className="flex items-center gap-1">
-                <input type="radio" name="role" id="trainer" value="trainer" />
+                <input
+                  type="radio"
+                  name="role"
+                  id="trainer"
+                  value="trainer"
+                  onChange={(e) => setRole(e.target.value)}
+                  checked={role === "trainer"}
+                />
                 <span>Trainer</span>
               </label>
               <label htmlFor="admin" className="flex items-center gap-1">
-                <input type="radio" name="role" id="admin" value="admin" />
+                <input
+                  type="radio"
+                  name="role"
+                  id="admin"
+                  value="admin"
+                  onChange={(e) => setRole(e.target.value)}
+                  checked={role === "admin"}
+                />
                 <span>Admin</span>
               </label>
             </div>
