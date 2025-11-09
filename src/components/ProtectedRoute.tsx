@@ -1,9 +1,9 @@
-import { Navigate } from 'react-router-dom';
-import { authStore } from '../store/authStore';
+import { Navigate } from "react-router-dom";
+import { authStore } from "../store/authStore";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  allowedRoles: ('admin' | 'user' | 'trainer')[];
+  allowedRoles: ("admin" | "user" | "trainer")[];
 }
 
 const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
@@ -16,11 +16,11 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   if (!allowedRoles.includes(authUser.role)) {
     // Redirect to appropriate home page based on role
     switch (authUser.role) {
-      case 'admin':
+      case "admin":
         return <Navigate to="/admin/home" replace />;
-      case 'user':
+      case "user":
         return <Navigate to="/user/home" replace />;
-      case 'trainer':
+      case "trainer":
         return <Navigate to="/trainer/home" replace />;
       default:
         return <Navigate to="/login" replace />;
@@ -28,6 +28,6 @@ const ProtectedRoute = ({ children, allowedRoles }: ProtectedRouteProps) => {
   }
 
   return <>{children}</>;
-}
+};
 
 export default ProtectedRoute;

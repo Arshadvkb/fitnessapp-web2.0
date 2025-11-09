@@ -27,17 +27,17 @@ export const authStore = create<AuthState>((set) => ({
       if (res.data) {
         let userData;
         switch (role) {
-          case 'user':
+          case "user":
             userData = res.data.user;
             break;
-          case 'trainer':
+          case "trainer":
             userData = res.data.trainer;
             break;
-          case 'admin':
+          case "admin":
             userData = res.data.admin;
             break;
         }
-        
+
         if (userData) {
           set({ authUser: { ...userData, role } });
         } else {
