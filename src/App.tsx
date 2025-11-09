@@ -3,6 +3,7 @@ import Admin_home from "./modules/admin/Admin_home";
 import User_home from "./modules/user/User_home";
 import Trainer_home from "./modules/trainer/Trainer_home";
 import Login from "./modules/auth/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -10,15 +11,37 @@ const App = () => {
       <Routes>
         {/* auth */}
         <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         {/* admin route */}
-        <Route path="/admin/home" element={<Admin_home />} />
+        <Route 
+          path="/admin/home" 
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <Admin_home />
+            </ProtectedRoute>
+          } 
+        />
 
-        {/* trainer rotes */}
-        <Route path="/trainer/home" element={<Trainer_home />} />
+        {/* trainer routes */}
+        <Route 
+          path="/trainer/home" 
+          element={
+            <ProtectedRoute allowedRoles={['trainer']}>
+              <Trainer_home />
+            </ProtectedRoute>
+          } 
+        />
 
         {/* user routes */}
-        <Route path="/user/home" element={<User_home />} />
+        <Route 
+          path="/user/home" 
+          element={
+            <ProtectedRoute allowedRoles={['user']}>
+              <User_home />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </div>
   );

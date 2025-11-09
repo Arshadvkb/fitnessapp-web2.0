@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { authStore } from "../../store/authStore";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [role, setRole] = useState<string>("");
+  const [role, setRole] = useState<string>("user");
   const { authUser, login } = authStore();
+  const navigate = useNavigate();
+
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     login(email, password, role);
-    console.log(authUser);
   };
+
+  useEffect(() => {
+    if (!authUser) return;
+
+    switch (authUser.role) {
+      case "admin":
+        navigate("/admin/home");
+        break;
+      case "trainer":
+        navigate("/trainer/home");
+        break;
+      case "user":
+      default:
+        navigate("/user/home");
+        break;
+    }
+  }, [authUser, navigate]);
 
   return (
     <div>

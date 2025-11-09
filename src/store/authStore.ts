@@ -25,14 +25,26 @@ export const authStore = create<AuthState>((set) => ({
       console.log("result===>", res);
 
       if (res.data) {
-        if (role === "user")
-          if (res.data.user) {
-            set({ authUser: res.data.user });
-          } else {
-            console.error("User data is missing in the response");
-          }
+        let userData;
+        switch (role) {
+          case 'user':
+            userData = res.data.user;
+            break;
+          case 'trainer':
+            userData = res.data.trainer;
+            break;
+          case 'admin':
+            userData = res.data.admin;
+            break;
+        }
+        
+        if (userData) {
+          set({ authUser: { ...userData, role } });
+        } else {
+          console.error(`${role} data is missing in the response`);
+        }
       } else {
-        console.error("Invalid user data received");
+        console.error("Invalid response data received");
       }
     } catch (error) {
       console.log(error);
