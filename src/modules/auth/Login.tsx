@@ -1,5 +1,68 @@
+import { useState } from "react";
+import { authStore } from "../../store/authStore";
+
 const Login = () => {
-  return <div></div>;
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [role, setRole] = useState<string>("");
+  const { authUser, login } = authStore();
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+   
+    login(email, password, role);
+    console.log(authUser);
+  };
+
+  return (
+    <div>
+      <div className="min-w-screen min-h-screen bg-main flex justify-center items-center ">
+        <form onSubmit={submitHandler}>
+          <div className="h-90 w-60 bg-accent flex flex-col gap-5 items-center justify-center rounded-2xl">
+            <input
+              value={email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setEmail(e.target.value);
+              }}
+              placeholder="email"
+              className="bg-secondary pl-5 rounded-2xl h-10 w-50"
+              type="text"
+            />
+            <input
+              value={password}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setPassword(e.target.value);
+              }}
+              placeholder="password"
+              className="bg-secondary pl-5 rounded-2xl h-10 w-50"
+              type="password"
+            />
+
+            <div className="flex gap-4 items-center">
+              <label htmlFor="user" className="flex items-center gap-1">
+                <input type="radio" name="role" id="user" value="user" />
+                <span>User</span>
+              </label>
+              <label htmlFor="trainer" className="flex items-center gap-1">
+                <input type="radio" name="role" id="trainer" value="trainer" />
+                <span>Trainer</span>
+              </label>
+              <label htmlFor="admin" className="flex items-center gap-1">
+                <input type="radio" name="role" id="admin" value="admin" />
+                <span>Admin</span>
+              </label>
+            </div>
+            <button className="bg-secondary rounded-2xl h-10 w-50">
+              Login
+            </button>
+            <p>
+              dont have an acoount?{" "}
+              <span className="text-blue-600 underline">regiter</span>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
