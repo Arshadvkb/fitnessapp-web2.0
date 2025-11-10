@@ -1,16 +1,18 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import type { User } from "../types/user";
+import type { Admin } from "../types/admin";
+import type { Trainer } from "../types/trainer";
 
 interface AuthState {
-  authUser: User | null;
+  authUser: (User | Admin | Trainer | null) & { role?: string };
   isLoggingIn: boolean;
   isSigningIn: boolean;
   login: (email: string, password: string, role: string) => Promise<void>;
 }
 
 export const authStore = create<AuthState>((set) => ({
-  authUser: null,
+  authUser: null as unknown as (User | Admin | Trainer | null) & { role?: string },
   isLoggingIn: false,
   isSigningIn: false,
 
