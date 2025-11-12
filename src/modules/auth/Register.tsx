@@ -12,11 +12,12 @@ import {
 } from "lucide-react";
 import { authStore } from "../../store/authStore";
 import type { FormData } from "../../types/formdata";
-import {toast} from"react-toastify"
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function RegistrationForm() {
-  const signups = ()=> toast("signedup successffuly")
-  const signupf = ()=> toast("sign up failed")
+  const signups = () => toast("signedup successffuly");
+  const signupf = () => toast("sign up failed");
   const [formData, setFormData] = useState<FormData>({
     userName: "",
     email: "",
@@ -45,17 +46,14 @@ export default function RegistrationForm() {
     }
   };
 
-  const handleSubmit =async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   const data= await signup(formData);
-   if (data) {
-    signups()
-  }
-  else{
-     signupf()
-
-   }
-
+    const data = await signup(formData);
+    if (data) {
+      signups();
+    } else {
+      signupf();
+    }
   };
 
   const handleChange = (
@@ -66,9 +64,9 @@ export default function RegistrationForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+    <div className="min-h-screen bg-main py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="bg-secondary rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-2">
               Join Our Fitness Community
@@ -281,10 +279,11 @@ export default function RegistrationForm() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="w-full bg-gradient-to-r from-main via-secondary to-accent text-white font-semibold py-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Start Your Journey
             </button>
+            <p>Already have an account? <Link to="/login" className="text-blue-700 underline">login</Link></p>
           </form>
         </div>
       </div>

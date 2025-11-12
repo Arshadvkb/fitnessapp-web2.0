@@ -34,16 +34,15 @@ export const authStore = create<AuthState>((set) => ({
   isSigningUp: false,
 
   signup: async (formdata: FormData) => {
-    set({ isSigningUp :true});
-    
+    set({ isSigningUp: true });
+
     try {
       const res = await axiosInstance.post("/auth/user/register", formdata);
       console.log(res.data);
-      return res.data
+      return res.data;
     } catch (error) {
       console.log(error);
-    }
-    finally{
+    } finally {
       set({ isSigningUp: false });
     }
   },
