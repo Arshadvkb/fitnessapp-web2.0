@@ -5,7 +5,7 @@ const View_video = () => {
   return (
     <div>
       <Usernavbar />
-      <Viewvideo/>
+      <Viewvideo />
     </div>
   );
 };
