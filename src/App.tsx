@@ -43,11 +43,11 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/user/viewvideo"
           element={
             <ProtectedRoute allowedRoles={["user"]}>
-              <View_video/>
+              <View_video />
             </ProtectedRoute>
           }
         />

@@ -13,7 +13,9 @@ interface AuthState {
 }
 
 // Try to hydrate authUser from localStorage so refreshes keep the user signed in
-const hydrateAuthUser = (): ((User | Admin | Trainer) & { role?: string }) | null => {
+const hydrateAuthUser = ():
+  | ((User | Admin | Trainer) & { role?: string })
+  | null => {
   try {
     const raw = localStorage.getItem("authUser");
     if (!raw) return null;

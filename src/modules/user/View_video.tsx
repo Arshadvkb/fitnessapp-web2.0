@@ -1,12 +1,12 @@
-import React from 'react'
-import Usernavbar from '../../components/user/Usernavbar'
+import React from "react";
+import Usernavbar from "../../components/user/Usernavbar";
 
 const View_video = () => {
   return (
     <div>
-   <Usernavbar/>
+      <Usernavbar />
     </div>
-  )
-}
+  );
+};
 
-export default View_video
+export default View_video;
