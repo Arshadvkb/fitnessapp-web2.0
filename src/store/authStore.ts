@@ -3,6 +3,7 @@ import { axiosInstance } from "../lib/axios";
 import type { User } from "../types/user";
 import type { Admin } from "../types/admin";
 import type { Trainer } from "../types/trainer";
+import type { FormData } from "../types/formdata";
 
 interface AuthState {
   authUser: ((User | Admin | Trainer) & { role?: string }) | null;
@@ -10,6 +11,7 @@ interface AuthState {
   isSigningIn: boolean;
   login: (email: string, password: string, role: string) => Promise<void>;
   logout: () => void;
+  signup: (formdata: FormData) => Promise<void>;
 }
 
 // Try to hydrate authUser from localStorage so refreshes keep the user signed in
@@ -31,6 +33,15 @@ export const authStore = create<AuthState>((set) => ({
   isLoggingIn: false,
   isSigningIn: false,
 
+  signup: async (formdata: FormData) => {
+    try {
+      const res = await axiosInstance.post("/auth/user/register", formdata);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   login: async (email: string, password: string, role: string) => {
     set({ isLoggingIn: true });
     try {
@@ -39,8 +50,6 @@ export const authStore = create<AuthState>((set) => ({
         password,
         role,
       });
-      // console.log("result===>", res);
-
       if (res.data) {
         let userData;
         switch (role) {

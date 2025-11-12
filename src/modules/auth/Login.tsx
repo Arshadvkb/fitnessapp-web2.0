@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authStore } from "../../store/authStore";
 
 const Login = () => {
@@ -94,9 +94,12 @@ const Login = () => {
             <button className="bg-secondary rounded-2xl h-10 w-50">
               Login
             </button>
-            <p>
-              dont have an acoount?{" "}
-              <span className="text-blue-600 underline">regiter</span>
+            <p className="text-white">
+              {" "}
+              Don't have an account{" "}
+              <Link to="/signup" className="text-blue-700 underline">
+                Sign up
+              </Link>
             </p>
           </div>
         </form>

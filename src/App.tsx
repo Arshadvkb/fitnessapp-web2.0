@@ -5,6 +5,7 @@ import Trainer_home from "./modules/trainer/Trainer_home";
 import Login from "./modules/auth/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import View_video from "./modules/user/View_video";
+import Register from "./modules/auth/Register";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         {/* auth */}
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
 
         {/* admin route */}
         <Route
