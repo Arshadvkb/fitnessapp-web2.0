@@ -12,8 +12,11 @@ import {
 } from "lucide-react";
 import { authStore } from "../../store/authStore";
 import type { FormData } from "../../types/formdata";
+import {toast} from"react-toastify"
 
 export default function RegistrationForm() {
+  const signups = ()=> toast("signedup successffuly")
+  const signupf = ()=> toast("sign up failed")
   const [formData, setFormData] = useState<FormData>({
     userName: "",
     email: "",
@@ -42,9 +45,17 @@ export default function RegistrationForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit =async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signup(formData);
+   const data= await signup(formData);
+   if (data) {
+    signups()
+  }
+  else{
+     signupf()
+
+   }
+
   };
 
   const handleChange = (
@@ -97,7 +108,7 @@ export default function RegistrationForm() {
             {/* Personal Information */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="relative">
-               <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   name="userName"
@@ -136,7 +147,7 @@ export default function RegistrationForm() {
                 <MapPin className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  name="city"
+                  name="place"
                   placeholder="City"
                   value={formData.place}
                   onChange={handleChange}

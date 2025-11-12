@@ -8,10 +8,10 @@ import type { FormData } from "../types/formdata";
 interface AuthState {
   authUser: ((User | Admin | Trainer) & { role?: string }) | null;
   isLoggingIn: boolean;
-  isSigningIn: boolean;
+  isSigningUp: boolean;
   login: (email: string, password: string, role: string) => Promise<void>;
   logout: () => void;
-  signup: (formdata: FormData) => Promise<void>;
+  signup: (formdata: FormData) => Promise<string[]>;
 }
 
 // Try to hydrate authUser from localStorage so refreshes keep the user signed in
@@ -31,14 +31,20 @@ const hydrateAuthUser = ():
 export const authStore = create<AuthState>((set) => ({
   authUser: hydrateAuthUser(),
   isLoggingIn: false,
-  isSigningIn: false,
+  isSigningUp: false,
 
   signup: async (formdata: FormData) => {
+    set({ isSigningUp :true});
+    
     try {
       const res = await axiosInstance.post("/auth/user/register", formdata);
-      console.log(res);
+      console.log(res.data);
+      return res.data
     } catch (error) {
       console.log(error);
+    }
+    finally{
+      set({ isSigningUp: false });
     }
   },
 
