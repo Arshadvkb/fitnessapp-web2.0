@@ -32,12 +32,12 @@ const Viewvideo = () => {
   const safeVideos = videos ?? [];
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+    <div className="bg-secondary min-h-screen">
+    
+      <div >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-3xl font-bold text-gray-900">Video Gallery</h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-900">
             {safeVideos.length} videos available
           </p>
         </div>
@@ -49,7 +49,7 @@ const Viewvideo = () => {
             {safeVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100"
+                className="bg-accent rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100"
               >
                 <div className="relative bg-gray-900 aspect-video">
                   <video controls className="w-full h-full" preload="metadata">
