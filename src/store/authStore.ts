@@ -79,8 +79,10 @@ export const authStore = create<AuthState>((set) => ({
     }
   },
 
-  logout: () => {
+  logout:async () => {
     try {
+      await axiosInstance.post("/auth/logout")
+      set({authUser:null})
       localStorage.removeItem("authUser");
     } catch (e) {
       console.warn("Failed to remove authUser from localStorage", e);
