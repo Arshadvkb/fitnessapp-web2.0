@@ -4,6 +4,7 @@ import User_home from "./modules/user/User_home";
 import Trainer_home from "./modules/trainer/Trainer_home";
 import Login from "./modules/auth/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import View_video from "./modules/user/View_video";
 
 const App = () => {
   return (
@@ -39,6 +40,14 @@ const App = () => {
           element={
             <ProtectedRoute allowedRoles={["user"]}>
               <User_home />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/user/viewvideo"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <View_video/>
             </ProtectedRoute>
           }
         />

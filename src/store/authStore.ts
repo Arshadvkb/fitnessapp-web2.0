@@ -5,14 +5,27 @@ import type { Admin } from "../types/admin";
 import type { Trainer } from "../types/trainer";
 
 interface AuthState {
-  authUser: (User | Admin | Trainer) & { role?: string } | null;
+  authUser: ((User | Admin | Trainer) & { role?: string }) | null;
   isLoggingIn: boolean;
   isSigningIn: boolean;
   login: (email: string, password: string, role: string) => Promise<void>;
+  logout: () => void;
 }
 
+// Try to hydrate authUser from localStorage so refreshes keep the user signed in
+const hydrateAuthUser = (): ((User | Admin | Trainer) & { role?: string }) | null => {
+  try {
+    const raw = localStorage.getItem("authUser");
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error("Failed to parse stored authUser", e);
+    return null;
+  }
+};
+
 export const authStore = create<AuthState>((set) => ({
-  authUser: null,
+  authUser: hydrateAuthUser(),
   isLoggingIn: false,
   isSigningIn: false,
 
@@ -24,7 +37,7 @@ export const authStore = create<AuthState>((set) => ({
         password,
         role,
       });
-      console.log("result===>", res);
+      // console.log("result===>", res);
 
       if (res.data) {
         let userData;
@@ -38,10 +51,19 @@ export const authStore = create<AuthState>((set) => ({
           case "admin":
             userData = res.data.admin;
             break;
+          default:
+            userData = null;
         }
 
         if (userData) {
-          set({ authUser: { ...userData, role } });
+          const stored = { ...userData, role };
+          // persist to localStorage so refresh doesn't lose auth
+          try {
+            localStorage.setItem("authUser", JSON.stringify(stored));
+          } catch (e) {
+            console.warn("Failed to persist authUser to localStorage", e);
+          }
+          set({ authUser: stored });
         } else {
           console.error(`${role} data is missing in the response`);
         }
@@ -53,5 +75,14 @@ export const authStore = create<AuthState>((set) => ({
     } finally {
       set({ isLoggingIn: false });
     }
+  },
+
+  logout: () => {
+    try {
+      localStorage.removeItem("authUser");
+    } catch (e) {
+      console.warn("Failed to remove authUser from localStorage", e);
+    }
+    set({ authUser: null });
   },
 }));
