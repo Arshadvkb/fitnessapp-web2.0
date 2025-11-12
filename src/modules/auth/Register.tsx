@@ -283,7 +283,12 @@ export default function RegistrationForm() {
             >
               Start Your Journey
             </button>
-            <p>Already have an account? <Link to="/login" className="text-blue-700 underline">login</Link></p>
+            <p>
+              Already have an account?{" "}
+              <Link to="/login" className="text-blue-700 underline">
+                login
+              </Link>
+            </p>
           </form>
         </div>
       </div>
