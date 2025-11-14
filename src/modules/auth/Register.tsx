@@ -14,7 +14,6 @@ import { authStore } from "../../store/authStore";
 import type { FormData } from "../../types/formdata";
 import { toast } from "react-toastify";
 
-
 export default function RegistrationForm() {
   const signups = () => toast("signedup successffuly");
   const signupf = () => toast("sign up failed");

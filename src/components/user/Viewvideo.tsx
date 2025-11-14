@@ -33,7 +33,7 @@ const Viewvideo = () => {
   const safeVideos = videos ?? [];
 
   return (
-   <div className="bg-main min-h-screen">
+    <div className="bg-main min-h-screen">
       {/* Header */}
       <div className="bg-accent shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -55,9 +55,9 @@ const Viewvideo = () => {
               >
                 {/* Video Container */}
                 <div className="relative bg-secondary aspect-video">
-                  <video 
-                    controls 
-                    className="w-full h-full object-cover" 
+                  <video
+                    controls
+                    className="w-full h-full object-cover"
                     preload="metadata"
                   >
                     <source src={video.video} type="video/mp4" />
@@ -99,7 +99,9 @@ const Viewvideo = () => {
             <h3 className="text-2xl font-bold text-white mb-3">
               No videos available
             </h3>
-            <p className="text-white/60 text-lg">Check back later for new content</p>
+            <p className="text-white/60 text-lg">
+              Check back later for new content
+            </p>
           </div>
         )}
       </div>
