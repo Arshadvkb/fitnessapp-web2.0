@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { authStore } from "../../store/authStore";
 
 const Login = () => {
@@ -33,9 +33,15 @@ const Login = () => {
   }, [authUser, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#154d71' }}>
+    <div
+      className="min-h-screen flex items-center justify-center p-4"
+      style={{ backgroundColor: "#154d71" }}
+    >
       <div className="w-full max-w-md">
-        <div className="rounded-3xl shadow-2xl p-8" style={{ backgroundColor: '#33a1e0' }}>
+        <div
+          className="rounded-3xl shadow-2xl p-8"
+          style={{ backgroundColor: "#33a1e0" }}
+        >
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
@@ -46,7 +52,10 @@ const Login = () => {
           <form onSubmit={submitHandler} className="space-y-6">
             {/* Email Input */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-white mb-2"
+              >
                 Email Address
               </label>
               <input
@@ -56,14 +65,17 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 className="w-full px-4 py-3 rounded-xl border-0 focus:ring-2 focus:ring-white/50 transition-all outline-none"
-                style={{ backgroundColor: '#1c6ea4', color: 'white' }}
+                style={{ backgroundColor: "#1c6ea4", color: "white" }}
                 required
               />
             </div>
 
             {/* Password Input */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-white mb-2"
+              >
                 Password
               </label>
               <input
@@ -73,7 +85,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 className="w-full px-4 py-3 rounded-xl border-0 focus:ring-2 focus:ring-white/50 transition-all outline-none"
-                style={{ backgroundColor: '#1c6ea4', color: 'white' }}
+                style={{ backgroundColor: "#1c6ea4", color: "white" }}
                 required
               />
             </div>
@@ -84,11 +96,16 @@ const Login = () => {
                 Select Role
               </label>
               <div className="flex gap-3">
-                <label 
+                <label
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl cursor-pointer transition-all ${
-                    role === 'user' ? 'ring-2 ring-white shadow-lg' : 'hover:bg-white/10'
+                    role === "user"
+                      ? "ring-2 ring-white shadow-lg"
+                      : "hover:bg-white/10"
                   }`}
-                  style={{ backgroundColor: role === 'user' ? '#1c6ea4' : 'transparent' }}
+                  style={{
+                    backgroundColor:
+                      role === "user" ? "#1c6ea4" : "transparent",
+                  }}
                 >
                   <input
                     type="radio"
@@ -101,11 +118,16 @@ const Login = () => {
                   <span className="text-white font-medium">User</span>
                 </label>
 
-                <label 
+                <label
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl cursor-pointer transition-all ${
-                    role === 'trainer' ? 'ring-2 ring-white shadow-lg' : 'hover:bg-white/10'
+                    role === "trainer"
+                      ? "ring-2 ring-white shadow-lg"
+                      : "hover:bg-white/10"
                   }`}
-                  style={{ backgroundColor: role === 'trainer' ? '#1c6ea4' : 'transparent' }}
+                  style={{
+                    backgroundColor:
+                      role === "trainer" ? "#1c6ea4" : "transparent",
+                  }}
                 >
                   <input
                     type="radio"
@@ -118,11 +140,16 @@ const Login = () => {
                   <span className="text-white font-medium">Trainer</span>
                 </label>
 
-                <label 
+                <label
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl cursor-pointer transition-all ${
-                    role === 'admin' ? 'ring-2 ring-white shadow-lg' : 'hover:bg-white/10'
+                    role === "admin"
+                      ? "ring-2 ring-white shadow-lg"
+                      : "hover:bg-white/10"
                   }`}
-                  style={{ backgroundColor: role === 'admin' ? '#1c6ea4' : 'transparent' }}
+                  style={{
+                    backgroundColor:
+                      role === "admin" ? "#1c6ea4" : "transparent",
+                  }}
                 >
                   <input
                     type="radio"
@@ -141,7 +168,7 @@ const Login = () => {
             <button
               type="submit"
               className="w-full py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ backgroundColor: '#1c6ea4' }}
+              style={{ backgroundColor: "#1c6ea4" }}
             >
               Login
             </button>
@@ -151,10 +178,10 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-white/90">
               Don't have an account?{" "}
-              <a 
-                href="/signup" 
+              <a
+                href="/signup"
                 className="font-semibold underline hover:no-underline transition-all"
-                style={{ color: '#fff9af' }}
+                style={{ color: "#fff9af" }}
               >
                 Sign up
               </a>
@@ -168,7 +195,6 @@ const Login = () => {
         </p>
       </div>
     </div>
-
   );
 };
 
