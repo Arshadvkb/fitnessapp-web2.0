@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { videoStore } from "../../store/videoStore";
 import type { Video } from "../../types/video";
+import { Film, Play } from "lucide-react";
 
 const Viewvideo = () => {
   const { getVideo, videos } = videoStore() as {
@@ -32,45 +33,58 @@ const Viewvideo = () => {
   const safeVideos = videos ?? [];
 
   return (
-    <div className="bg-secondary min-h-screen min-w-screen">
-      <div>
+   <div className="bg-main min-h-screen">
+      {/* Header */}
+      <div className="bg-accent shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-3xl font-bold text-gray-900">Video Gallery</h1>
-          <p className="mt-2 text-gray-900">
+          <h1 className="text-4xl font-bold text-white">Video Gallery</h1>
+          <p className="mt-2 text-white/80 text-lg">
             {safeVideos.length} videos available
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Video Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {safeVideos.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {safeVideos.map((video, index) => (
               <div
                 key={index}
-                className="bg-accent rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100"
+                className="bg-accent rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden hover:scale-105"
               >
-                <div className="relative bg-gray-900 aspect-video">
-                  <video controls className="w-full h-full" preload="metadata">
+                {/* Video Container */}
+                <div className="relative bg-secondary aspect-video">
+                  <video 
+                    controls 
+                    className="w-full h-full object-cover" 
+                    preload="metadata"
+                  >
                     <source src={video.video} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
+                  <div className="absolute top-3 right-3 bg-main/80 backdrop-blur-sm px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-white">HD</span>
+                  </div>
                 </div>
 
-                <div className="p-5">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                {/* Video Info */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
                     {video.video_name}
                   </h3>
-                  <p className="text-sm text-gray-600 line-clamp-3">
+                  <p className="text-sm text-white/70 line-clamp-3 mb-4">
                     {video.video_description}
                   </p>
 
-                  <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100">
-                    <div className="flex items-center gap-1 text-xs text-gray-500">
-                      <span>Video</span>
+                  <div className="flex items-center gap-4 pt-4 border-t border-white/20">
+                    <div className="flex items-center gap-2 text-xs text-white/60">
+                      <Film className="w-4 h-4" />
+                      <span>Training Video</span>
                     </div>
-                    <div className="flex items-center gap-1 text-xs text-gray-500">
-                      <span>HD Quality</span>
+                    <div className="flex items-center gap-2 text-xs text-white/60">
+                      <Play className="w-4 h-4" />
+                      <span>Watch Now</span>
                     </div>
                   </div>
                 </div>
@@ -79,11 +93,13 @@ const Viewvideo = () => {
           </div>
         ) : (
           <div className="text-center py-20">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4"></div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent mb-6">
+              <Film className="w-10 h-10 text-white" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-3">
               No videos available
             </h3>
-            <p className="text-gray-500">Check back later for new content</p>
+            <p className="text-white/60 text-lg">Check back later for new content</p>
           </div>
         )}
       </div>

@@ -13,7 +13,7 @@ import {
 import { authStore } from "../../store/authStore";
 import type { FormData } from "../../types/formdata";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+
 
 export default function RegistrationForm() {
   const signups = () => toast("signedup successffuly");
@@ -63,7 +63,8 @@ export default function RegistrationForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  return (<div className="min-h-screen bg-main py-12 px-4">
+  return (
+    <div className="min-h-screen bg-main py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-accent rounded-3xl shadow-2xl p-8 md:p-12">
           {/* Header */}
@@ -221,7 +222,7 @@ export default function RegistrationForm() {
                   value={formData.dob}
                   onChange={handleChange}
                   className="w-full bg-secondary text-white pl-11 pr-4 py-3 rounded-xl border-0 focus:ring-2 focus:ring-white/50 transition-all outline-none"
-                  style={{ colorScheme: 'dark' }}
+                  style={{ colorScheme: "dark" }}
                 />
               </div>
             </div>
@@ -241,9 +242,13 @@ export default function RegistrationForm() {
                     onChange={handleChange}
                     className="peer sr-only"
                   />
-                  <div className={`p-4 rounded-xl text-center transition-all border-2 peer-checked:border-white peer-checked:shadow-lg peer-checked:scale-105 ${
-                    formData.gender === "male" ? 'bg-secondary border-white' : 'bg-transparent border-white/30'
-                  }`}>
+                  <div
+                    className={`p-4 rounded-xl text-center transition-all border-2 peer-checked:border-white peer-checked:shadow-lg peer-checked:scale-105 ${
+                      formData.gender === "male"
+                        ? "bg-secondary border-white"
+                        : "bg-transparent border-white/30"
+                    }`}
+                  >
                     <span className="font-semibold text-white">Male</span>
                   </div>
                 </label>
@@ -256,9 +261,13 @@ export default function RegistrationForm() {
                     onChange={handleChange}
                     className="peer sr-only"
                   />
-                  <div className={`p-4 rounded-xl text-center transition-all border-2 peer-checked:border-white peer-checked:shadow-lg peer-checked:scale-105 ${
-                    formData.gender === "female" ? 'bg-secondary border-white' : 'bg-transparent border-white/30'
-                  }`}>
+                  <div
+                    className={`p-4 rounded-xl text-center transition-all border-2 peer-checked:border-white peer-checked:shadow-lg peer-checked:scale-105 ${
+                      formData.gender === "female"
+                        ? "bg-secondary border-white"
+                        : "bg-transparent border-white/30"
+                    }`}
+                  >
                     <span className="font-semibold text-white">Female</span>
                   </div>
                 </label>
@@ -347,8 +356,8 @@ export default function RegistrationForm() {
             <div className="text-center">
               <p className="text-white/90">
                 Already have an account?{" "}
-                <a 
-                  href="/login" 
+                <a
+                  href="/login"
                   className="text-light font-semibold underline hover:no-underline transition-all"
                 >
                   Login
@@ -364,6 +373,5 @@ export default function RegistrationForm() {
         </p>
       </div>
     </div>
-
   );
 }
