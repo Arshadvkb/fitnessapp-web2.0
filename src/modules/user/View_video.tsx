@@ -1,3 +1,4 @@
+import UserFooter from "../../components/user/UserFooter";
 import Usernavbar from "../../components/user/Usernavbar";
 import Viewvideo from "../../components/user/Viewvideo";
 
@@ -6,6 +7,7 @@ const View_video = () => {
     <div>
       <Usernavbar />
       <Viewvideo />
+      <UserFooter/>
     </div>
   );
 };
