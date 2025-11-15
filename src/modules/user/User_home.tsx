@@ -6,10 +6,9 @@ const User_home = () => {
     <div>
       <Usernavbar />
       <div className="min-h-screen">
-
-      <h1>User_home</h1>
+        <h1>User_home</h1>
       </div>
-      <UserFooter/>
+      <UserFooter />
     </div>
   );
 };

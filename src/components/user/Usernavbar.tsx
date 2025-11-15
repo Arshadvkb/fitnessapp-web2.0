@@ -19,7 +19,7 @@ const Usernavbar = () => {
             </li>
             <li>
               <Link to="/user/viewtrainer"> view trainer</Link>
-              </li>
+            </li>
             <button onClick={logout}>Logout</button>
           </ul>
         </div>

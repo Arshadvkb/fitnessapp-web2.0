@@ -54,11 +54,11 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/user/viewtrainer"
           element={
             <ProtectedRoute allowedRoles={["user"]}>
-              <ViewTrainer/>
+              <ViewTrainer />
             </ProtectedRoute>
           }
         />

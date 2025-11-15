@@ -7,7 +7,7 @@ const View_video = () => {
     <div>
       <Usernavbar />
       <Viewvideo />
-      <UserFooter/>
+      <UserFooter />
     </div>
   );
 };
