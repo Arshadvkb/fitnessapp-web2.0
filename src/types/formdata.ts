@@ -11,4 +11,5 @@ export interface FormData {
   goal: string;
   description: string;
   gender: string;
+  file: File | string | null;
 }

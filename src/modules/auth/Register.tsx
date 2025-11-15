@@ -30,13 +30,16 @@ export default function RegistrationForm() {
     goal: "",
     description: "",
     gender: "",
+    file:null
   });
   const [preview, setPreview] = useState<string | null>(null);
   const { signup } = authStore();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+  
     if (file) {
+      setFormData((prev) => ({ ...prev, file: file||null }));
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result as string);
@@ -47,7 +50,27 @@ export default function RegistrationForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await signup(formData);
+
+    // 1. Create a new Browser FormData instance
+    const formDataToSend = new FormData();
+
+    // 2. Loop through your state and append fields
+    Object.entries(formData).forEach(([key, value]) => {
+      // Handle the file specifically
+      if (key === 'file') {
+        if (value instanceof File) {
+          formDataToSend.append('file', value);
+        }
+      } 
+      // Handle all other fields (strings)
+      else if (value !== null && value !== undefined && value !== '') {
+        formDataToSend.append(key, value as string);
+      }
+    });
+
+    // 3. Send the formDataToSend (NOT the formData state)
+    const data = await signup(formDataToSend); // <--- Pass the new object here
+    
     if (data) {
       signups();
     } else {
@@ -75,7 +98,7 @@ export default function RegistrationForm() {
               Start your journey to a healthier you
             </p>
           </div>
-
+<form onSubmit={handleSubmit}>
           <div className="space-y-8">
             {/* Profile Picture Upload */}
             <div className="flex justify-center">
@@ -345,7 +368,7 @@ export default function RegistrationForm() {
 
             {/* Submit Button */}
             <button
-              onClick={handleSubmit}
+        
               className="w-full bg-secondary text-white py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98] text-lg"
             >
               Start Your Journey
@@ -364,6 +387,7 @@ export default function RegistrationForm() {
               </p>
             </div>
           </div>
+          </form>
         </div>
 
         {/* Footer Text */}

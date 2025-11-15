@@ -12,6 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.10",
     "@tailwindcss/vite": "^4.1.17",
     "axios": "^1.13.2",
     "firebase": "^12.5.0",
