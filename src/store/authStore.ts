@@ -4,7 +4,6 @@ import type { User } from "../types/user";
 import type { Admin } from "../types/admin";
 import type { Trainer } from "../types/trainer";
 
-
 interface AuthState {
   authUser: ((User | Admin | Trainer) & { role?: string }) | null;
   isLoggingIn: boolean;
@@ -35,10 +34,13 @@ export const authStore = create<AuthState>((set) => ({
 
   signup: async (formdatapayload: unknown) => {
     set({ isSigningUp: true });
-console.log(formdatapayload);
+    console.log(formdatapayload);
 
     try {
-      const res = await axiosInstance.post("/auth/user/register", formdatapayload);
+      const res = await axiosInstance.post(
+        "/auth/user/register",
+        formdatapayload
+      );
       console.log(res.data);
       return res.data;
     } catch (error) {
