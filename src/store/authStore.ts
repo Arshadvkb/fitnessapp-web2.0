@@ -3,7 +3,6 @@ import { axiosInstance } from "../lib/axios";
 import type { User } from "../types/user";
 import type { Admin } from "../types/admin";
 import type { Trainer } from "../types/trainer";
-import type { FormData } from "../types/formdata";
 
 interface AuthState {
   authUser: ((User | Admin | Trainer) & { role?: string }) | null;
@@ -11,7 +10,7 @@ interface AuthState {
   isSigningUp: boolean;
   login: (email: string, password: string, role: string) => Promise<void>;
   logout: () => void;
-  signup: (formdata: FormData) => Promise<string[]>;
+  signup: (formdata: unknown) => Promise<unknown>;
 }
 
 // Try to hydrate authUser from localStorage so refreshes keep the user signed in
@@ -33,11 +32,15 @@ export const authStore = create<AuthState>((set) => ({
   isLoggingIn: false,
   isSigningUp: false,
 
-  signup: async (formdata: FormData) => {
+  signup: async (formdatapayload: unknown) => {
     set({ isSigningUp: true });
+    console.log(formdatapayload);
 
     try {
-      const res = await axiosInstance.post("/auth/user/register", formdata);
+      const res = await axiosInstance.post(
+        "/auth/user/register",
+        formdatapayload
+      );
       console.log(res.data);
       return res.data;
     } catch (error) {
