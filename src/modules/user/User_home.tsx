@@ -1,10 +1,14 @@
+import UserFooter from "../../components/user/UserFooter";
 import Usernavbar from "../../components/user/Usernavbar";
 
 const User_home = () => {
   return (
     <div>
       <Usernavbar />
-      <h1>User_home</h1>
+      <div className="min-h-screen">
+        <h1>User_home</h1>
+      </div>
+      <UserFooter />
     </div>
   );
 };

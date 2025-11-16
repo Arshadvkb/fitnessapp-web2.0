@@ -1,15 +1,15 @@
 import UserFooter from "../../components/user/UserFooter";
 import Usernavbar from "../../components/user/Usernavbar";
-import Viewvideo from "../../components/user/Viewvideo";
+import ViewTrainerComponent from "../../components/user/ViewTrainerComponent";
 
-const View_video = () => {
+const ViewTrainer = () => {
   return (
     <div>
       <Usernavbar />
-      <Viewvideo />
+      <ViewTrainerComponent />
       <UserFooter />
     </div>
   );
 };
 
-export default View_video;
+export default ViewTrainer;

@@ -33,9 +33,9 @@ const Viewvideo = () => {
   const safeVideos = videos ?? [];
 
   return (
-    <div className="bg-main min-h-screen">
+    <div className="bg-main min-w-screen min-h-screen">
       {/* Header */}
-      <div className="bg-accent shadow-lg">
+      <div className="bg-secondary shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-4xl font-bold text-white">Video Gallery</h1>
           <p className="mt-2 text-white/80 text-lg">

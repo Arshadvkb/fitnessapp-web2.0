@@ -6,6 +6,7 @@ import Login from "./modules/auth/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import View_video from "./modules/user/View_video";
 import Register from "./modules/auth/Register";
+import ViewTrainer from "./modules/user/ViewTrainer";
 
 const App = () => {
   return (
@@ -50,6 +51,14 @@ const App = () => {
           element={
             <ProtectedRoute allowedRoles={["user"]}>
               <View_video />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/viewtrainer"
+          element={
+            <ProtectedRoute allowedRoles={["user"]}>
+              <ViewTrainer />
             </ProtectedRoute>
           }
         />
